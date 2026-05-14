@@ -1,4 +1,4 @@
-mymachine:
+controlnodes:
   hosts:
-    localhost:
+    mymachine:
       ansible_connection: local

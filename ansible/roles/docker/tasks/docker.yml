@@ -1,0 +1,6 @@
+- name: Install docker
+  ansible.builtin.apt:
+    name: docker.io
+#- name: Hello World
+#  ansible.builtin.debug:
+#    msg: Hello Welt
