@@ -1,0 +1,6 @@
+- name: Setup my workplace
+  hosts: mymachine
+  tasks:
+    - name: Install debian packages
+      ansible.builtin.apt:
+        name: git
