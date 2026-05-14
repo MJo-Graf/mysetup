@@ -1,6 +1,9 @@
 - name: Install docker
   ansible.builtin.apt:
     name: docker.io
+  become: true
+  vars:
+    ansible_become_exe: sudo.ws
 #- name: Hello World
 #  ansible.builtin.debug:
 #    msg: Hello Welt

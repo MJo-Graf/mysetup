@@ -1,8 +1,5 @@
 - name: Setup my workplace
   hosts: controlnodes
-  become: true
-  become_user: root
-  become_method: sudo
   #connection: local
   roles: 
     - docker
