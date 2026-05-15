@@ -1,6 +1,13 @@
 - name: Setup my workplace
   hosts: controlnodes
-  #connection: local
+
+  pre_tasks:
+    - name: Get user
+      ansible.builtin.shell: whoami
+      register: user
+    - name: Get user id
+      ansible.builtin.shell: id -u
+      register: user_id
+
   roles: 
-    - docker
-#    - {role: 'docker'}
+    - role: docker
