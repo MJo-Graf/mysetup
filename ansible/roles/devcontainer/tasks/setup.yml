@@ -1,0 +1,6 @@
+- name: Build Ubuntu dev container 
+  community.docker.docker_image_build:
+    name: devcontainer
+    tag: 1.0.0
+    dockerfile: devcontainer.Dockerfile
+    path: /home/maximilian/git_repos/mysetup/docker

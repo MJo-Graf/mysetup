@@ -1,0 +1,2 @@
+- name: Setup DevContainer
+  ansible.builtin.import_tasks: setup.yml

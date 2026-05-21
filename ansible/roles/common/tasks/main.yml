@@ -1,0 +1,3 @@
+- name: Install common tools
+  ansible.builtin.import_tasks: install.yml
+

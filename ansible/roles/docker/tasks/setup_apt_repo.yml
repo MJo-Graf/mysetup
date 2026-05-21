@@ -1,0 +1,52 @@
+- name: Setup apt repository
+  ansible.builtin.file: 
+    path: /home/maximilian/Downloads/test
+    state: directory
+    owner: root
+    group: root
+    mode: '0775'
+  become: true
+  vars:
+    ansible_become_exe: sudo.ws
+
+
+
+- name: Download gpg key
+  ansible.builtin.get_url: 
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /home/maximilian/Downloads/test/mydownloadedfile.asc
+  become: true
+  vars:
+    ansible_become_exe: sudo.ws
+
+- name: Set key permissions
+  ansible.builtin.file:
+    path: /home/maximilian/Downloads/test/mydownloadedfile.asc
+    owner: root
+    group: root
+    mode: 'a+r'
+  become: true
+  vars:
+    ansible_become_exe: sudo.ws
+
+
+- name: 
+  ansible.builtin.copy:
+    content: |
+             Types: deb
+             URIs: https://download.docker.com/linux/ubuntu
+             Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+             Components: stable
+             Architectures: $(dpkg --print-architecture)
+             Signed-By: /etc/apt/keyrings/docker.asc
+    dest: /home/maximilian/Downloads/atestfile.txt
+  become: true
+  vars:
+    ansible_become_exe: sudo.ws
+
+- name: update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+  become: true
+  vars:
+    ansible_become_exe: sudo.ws
