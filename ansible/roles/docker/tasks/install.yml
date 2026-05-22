@@ -33,11 +33,3 @@
   vars:
     ansible_become_exe: sudo.ws
 
-- name: Add user to docker group
-  ansible.builtin.user:
-    name: "{{ user.stdout }}"
-    uid: "{{user_id.stdout }}"
-    group: docker
-  become: true
-  vars:
-    ansible_become_exe: sudo.ws

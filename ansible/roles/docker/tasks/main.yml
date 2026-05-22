@@ -1,6 +1,11 @@
 - name: Setup apt repo for installation of Docker
   ansible.builtin.import_tasks: setup_apt_repo.yml
 
-#- name: Install docker
-#  ansible.builtin.import_tasks: docker.yml
-  
+- name: Install docker
+  ansible.builtin.import_tasks: install.yml
+
+- name: Install docker
+  ansible.builtin.import_tasks: start.yml
+
+- name: Add user to docker group
+  ansible.builtin.import_tasks: add_user_2_docker_group.yml
