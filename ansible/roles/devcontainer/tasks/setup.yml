@@ -1,6 +1,17 @@
+- name: Print user data
+  ansible.builtin.debug:
+    msg: "Username: {{ user.stdout }}, user id: {{ user_id.stdout }}, group_id: {{ group_id.stdout }}"
+
 - name: Build Ubuntu dev container 
   community.docker.docker_image_build:
     name: devcontainer
     tag: 1.0.0
     dockerfile: devcontainer.Dockerfile
     path: "{{ dockerfile_path }}"
+    args:
+#      USERNAME: "{{ user.stdout }}"
+#      USERID: "{{ user_id.stdout }}"
+#      GROUPID: "{{ group_id.stdout }}"
+      USERNAME: maxim
+      USERID: 1100
+      GROUPID: 116

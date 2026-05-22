@@ -13,6 +13,9 @@
     - name: Get user id
       ansible.builtin.shell: id -u
       register: user_id
+    - name: Get group id
+      ansible.builtin.shell: id -g
+      register: group_id
     - name: Get Ubuntu version
       ansible.builtin.shell: . /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}"
       register: ubuntu_version
