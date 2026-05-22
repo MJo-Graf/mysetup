@@ -35,9 +35,9 @@
     content: |
              Types: deb
              URIs: https://download.docker.com/linux/ubuntu
-             Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+             Suites: {{ ubuntu_version.stdout }}
              Components: stable
-             Architectures: $(dpkg --print-architecture)
+             Architectures: {{ machine_architecture.stdout }}
              Signed-By: /etc/apt/keyrings/docker.asc
     dest: /etc/apt/sources.list.d/docker.sources
   become: true
