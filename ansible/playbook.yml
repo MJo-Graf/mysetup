@@ -1,5 +1,10 @@
 - name: Setup my workplace
   hosts: controlnodes
+  vars: 
+    repository_path: "{{ playbook_dir | ansible.builtin.dirname }}"
+    dockerfile_path: "{{ playbook_dir | ansible.builtin.dirname }}/docker"
+
+
 
   pre_tasks:
     - name: Get user
@@ -16,7 +21,7 @@
       register: machine_architecture
 
 
-
   roles: 
     - role: common
     - role: docker
+    - role: devcontainer

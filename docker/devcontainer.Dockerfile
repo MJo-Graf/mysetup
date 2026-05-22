@@ -1,3 +1,3 @@
 FROM ubuntu:resolute-20260108
 
-RUN sudo apt update
+RUN apt update && apt install -y sudo vim 
