@@ -1,6 +1,7 @@
 
 FROM ubuntu:resolute-20260108
 
+ARG GIT_REPOSITORY_PATH
 ARG USERNAME
 ARG USERID
 ARG GROUPID
@@ -67,6 +68,13 @@ RUN mkdir -p /home/${USERNAME}/.fonts \
 
 ###############################################################################
 
+
+###############################################################################
+# Setup vim as IDE
+RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+COPY vimrc /home/${USERNAME}/.vimrc
+
+###############################################################################
 
 CMD ["/bin/zsh"]
 

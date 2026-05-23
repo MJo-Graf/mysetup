@@ -12,3 +12,4 @@
       USERNAME: "{{ user.stdout }}"
       USERID: "{{ user_id.stdout }}"
       GROUPID: "{{ group_id.stdout }}"
+      GIT_REPOSITORY_PATH: "{{ repository_path }}"
