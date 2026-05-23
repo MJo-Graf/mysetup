@@ -1,2 +1,6 @@
-- name: Setup DevContainer
+- name: Install fonts on host 
   ansible.builtin.import_tasks: setup.yml
+
+- name: Setup DevContainer
+  ansible.builtin.import_tasks: fonts.yml
+

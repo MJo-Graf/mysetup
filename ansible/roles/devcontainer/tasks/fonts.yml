@@ -1,0 +1,5 @@
+- name: Download Fonts
+  ansible.builtin.get_url: 
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+    dest: "/home/{{ user.stdout }}/.fonts"
+

@@ -27,4 +27,5 @@
   roles: 
     - role: common
     - role: docker
+    - role: terminal
     - role: devcontainer
