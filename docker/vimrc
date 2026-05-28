@@ -29,3 +29,5 @@ filetype plugin indent on    " required
 
 
 set number
+
+set encoding=utf-8
