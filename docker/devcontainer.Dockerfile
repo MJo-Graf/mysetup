@@ -58,13 +58,15 @@ RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 RUN sed -i 's/ZSH_THEME.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' /home/${USERNAME}/.zshrc
 #RUN sed -i 's/ZSH_THEME.*/ZSH_THEME="agnoster"/' /home/${USERNAME}/.zshrc
-RUN mkdir -p /home/${USERNAME}/.fonts \
-  && curl -LO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf" --output-dir /home/${USERNAME}/.fonts \
-  && curl -LO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf" --output-dir /home/${USERNAME}/.fonts \
-  && curl -LO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" --output-dir /home/${USERNAME}/.fonts \
-  && curl -LO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" --output-dir /home/${USERNAME}/.fonts  
-  #&& fc-cache -f -v
+#RUN mkdir -p /home/${USERNAME}/.fonts \
+#  && curl -LO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf" --output-dir /home/${USERNAME}/.fonts \
+#  && curl -LO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf" --output-dir /home/${USERNAME}/.fonts \
+#  && curl -LO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" --output-dir /home/${USERNAME}/.fonts \
+#  && curl -LO "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" --output-dir /home/${USERNAME}/.fonts  
+#  #&& fc-cache -f -v
 
+COPY zshrc /home/${USERNAME}/.zshrc
+COPY p10k.zsh /home/${USERNAME}/.p10k.zsh
 
 ###############################################################################
 
@@ -73,6 +75,7 @@ RUN mkdir -p /home/${USERNAME}/.fonts \
 # Setup vim as IDE
 RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 COPY vimrc /home/${USERNAME}/.vimrc
+RUN vim +PluginInstall +qall
 
 ###############################################################################
 
