@@ -12,11 +12,9 @@ ARG GROUPID
 
 RUN apt update && apt install -y \
  sudo \
- vim \
  zsh \ 
  git \
  curl \
- #fonts-powerline \
  console-setup
 ###############################################################################
 
@@ -33,6 +31,8 @@ RUN userdel -r ubuntu
 # Add user with same name UID and GID as on the host.
 RUN groupadd -g ${GROUPID} ${USERNAME}
 RUN useradd ${USERNAME} -m -u ${USERID} -g ${GROUPID} -s /bin/zsh -G sudo
+RUN touch /etc/sudoers.d/${USERNAME} \
+&& echo "${USERNAME} ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/${USERNAME}
 ###############################################################################
 
 
@@ -45,7 +45,6 @@ WORKDIR /home/${USERNAME}
 
 ###############################################################################
 # Install oh-my-zsh according to https://github.com/ohmyzsh/ohmyzsh
-
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ###############################################################################
 
@@ -53,7 +52,6 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 ###############################################################################
 # Install powerlevel 10k
 # According to https://github.com/romkatv/powerlevel10k
-
 RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 RUN sed -i 's/ZSH_THEME.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' /home/${USERNAME}/.zshrc
@@ -67,17 +65,17 @@ RUN sed -i 's/ZSH_THEME.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' /home/${USE
 
 COPY zshrc /home/${USERNAME}/.zshrc
 COPY p10k.zsh /home/${USERNAME}/.p10k.zsh
-
 ###############################################################################
 
 
-###############################################################################
-# Setup vim as IDE
+################################################################################
+## Setup vim as IDE
+RUN sudo apt install -y vim build-essential cmake vim-nox python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm
 RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 COPY vimrc /home/${USERNAME}/.vimrc
 RUN vim +PluginInstall +qall
-
-###############################################################################
+RUN cd ~/.vim/bundle/youcompleteme && python3 install.py --all
+################################################################################
 
 CMD ["/bin/zsh"]
 
