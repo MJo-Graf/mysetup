@@ -1,0 +1,9 @@
+- name: Create docker contaner
+  community.docker.docker_container:
+    name: devcontainer
+    image: devcontainer:1.0.0
+    env: 
+      DISPLAY: "{{ lookup('ansible.builtin.env','DISPLAY') }}"
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+
