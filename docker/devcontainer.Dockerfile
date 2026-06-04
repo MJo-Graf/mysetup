@@ -77,6 +77,16 @@ RUN vim +PluginInstall +qall
 RUN cd ~/.vim/bundle/youcompleteme && python3 install.py --all
 ################################################################################
 
+
+################################################################################
+##  Install firefox, see: https://linuxconfig.org/how-to-install-firefox-without-snap-on-ubuntu-26-04
+RUN sudo apt update && sudo apt install software-properties-common -y
+RUN sudo add-apt-repository ppa:mozillateam/ppa
+RUN sudo apt update
+RUN sudo apt install firefox-esr
+################################################################################
+
+
 CMD ["/bin/zsh"]
 
 
