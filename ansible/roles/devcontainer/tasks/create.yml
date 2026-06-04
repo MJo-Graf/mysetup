@@ -6,4 +6,5 @@
       DISPLAY: "{{ lookup('ansible.builtin.env','DISPLAY') }}"
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-
+    tty: true
+    interactive: true
