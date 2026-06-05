@@ -68,13 +68,21 @@ COPY p10k.zsh /home/${USERNAME}/.p10k.zsh
 ###############################################################################
 
 
+#################################################################################
+### Setup vim as IDE
+#RUN sudo apt install -y vim build-essential cmake vim-nox python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm
+#RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#COPY vimrc /home/${USERNAME}/.vimrc
+#RUN vim +PluginInstall +qall
+#RUN cd ~/.vim/bundle/youcompleteme && python3 install.py --all
+#################################################################################
+
+
 ################################################################################
-## Setup vim as IDE
-RUN sudo apt install -y vim build-essential cmake vim-nox python3-dev mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm
-RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-COPY vimrc /home/${USERNAME}/.vimrc
-RUN vim +PluginInstall +qall
-RUN cd ~/.vim/bundle/youcompleteme && python3 install.py --all
+## Setup neovim as IDE
+RUN sudo apt update && sudo apt install -y neovim
+RUN git clone https://github.com/LazyVim/starter /home/${USERNAME}/.config/nvim
+RUN nvim --headless -c "Mason" -c  "MasonInstall clangd" -c qall
 ################################################################################
 
 
