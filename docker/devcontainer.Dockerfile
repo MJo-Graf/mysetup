@@ -83,7 +83,7 @@ RUN cd ~/.vim/bundle/youcompleteme && python3 install.py --all
 RUN sudo apt update && sudo apt install software-properties-common -y
 RUN sudo add-apt-repository ppa:mozillateam/ppa
 RUN sudo apt update
-RUN sudo apt install firefox-esr
+RUN sudo apt install -y firefox-esr
 ################################################################################
 
 

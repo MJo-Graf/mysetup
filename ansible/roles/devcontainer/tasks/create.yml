@@ -8,4 +8,5 @@
       - /tmp/.X11-unix:/tmp/.X11-unix
     tty: true
     interactive: true
-    network: host
+    networks:
+      - name: host
