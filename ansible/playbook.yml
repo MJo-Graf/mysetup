@@ -26,6 +26,6 @@
 
   roles: 
     - role: common
-    - role: docker
+    - role: docker-install
     - role: terminal
     - role: devcontainer
