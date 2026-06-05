@@ -1,5 +1,19 @@
-- name: Download Fonts
+- name: Download Meslo Regular Fonts
   ansible.builtin.get_url: 
     url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
     dest: "/home/{{ user.stdout }}/.fonts"
 
+- name: Download Meslo Bold Fonts
+  ansible.builtin.get_url: 
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+    dest: "/home/{{ user.stdout }}/.fonts"
+
+- name: Download Meslo Italic
+  ansible.builtin.get_url: 
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+    dest: "/home/{{ user.stdout }}/.fonts"
+
+- name: Download Bold Italic
+  ansible.builtin.get_url: 
+    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+    dest: "/home/{{ user.stdout }}/.fonts"

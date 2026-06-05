@@ -83,7 +83,7 @@ COPY p10k.zsh /home/${USERNAME}/.p10k.zsh
 
 ################################################################################
 ## Setup neovim as IDE
-RUN sudo apt update && sudo apt install -y neovim \
+RUN sudo apt update && sudo apt install -y neovim nodejs \
   && sudo rm -rf /var/lib/apt/lists/*
 RUN git clone https://github.com/LazyVim/starter /home/${USERNAME}/.config/nvim
 RUN nvim --headless -c "Mason" -c  "MasonInstall clangd" -c qall
