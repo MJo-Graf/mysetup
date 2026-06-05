@@ -12,10 +12,13 @@ ARG GROUPID
 
 RUN apt update && apt install -y \
  sudo \
- zsh \ 
+ zsh \
+ unzip \
  git \
  curl \
- console-setup
+ console-setup \
+ build-essential \
+ && sudo rm -rf /var/lib/apt/lists/*
 ###############################################################################
 
 
@@ -80,7 +83,8 @@ COPY p10k.zsh /home/${USERNAME}/.p10k.zsh
 
 ################################################################################
 ## Setup neovim as IDE
-RUN sudo apt update && sudo apt install -y neovim
+RUN sudo apt update && sudo apt install -y neovim \
+  && sudo rm -rf /var/lib/apt/lists/*
 RUN git clone https://github.com/LazyVim/starter /home/${USERNAME}/.config/nvim
 RUN nvim --headless -c "Mason" -c  "MasonInstall clangd" -c qall
 ################################################################################
@@ -88,10 +92,11 @@ RUN nvim --headless -c "Mason" -c  "MasonInstall clangd" -c qall
 
 ################################################################################
 ##  Install firefox, see: https://linuxconfig.org/how-to-install-firefox-without-snap-on-ubuntu-26-04
-RUN sudo apt update && sudo apt install software-properties-common -y
+RUN sudo apt update && sudo apt install -y \
+ software-properties-common 
 RUN sudo add-apt-repository ppa:mozillateam/ppa
-RUN sudo apt update
-RUN sudo apt install -y firefox-esr
+RUN sudo apt update && sudo apt install -y firefox-esr \
+  && sudo rm -rf /var/lib/apt/lists/*
 ################################################################################
 
 
