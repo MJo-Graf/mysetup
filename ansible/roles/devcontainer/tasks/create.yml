@@ -5,7 +5,8 @@
     env: 
       DISPLAY: "{{ lookup('ansible.builtin.env','DISPLAY') }}"
     volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+      - "/home/{{ user.stdout }}/workspace:/home/{{ user.stdout }}/workspace"
     tty: true
     interactive: true
     networks:
