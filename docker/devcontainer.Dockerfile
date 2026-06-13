@@ -99,6 +99,13 @@ RUN sudo apt update && sudo apt install -y firefox-esr \
   && sudo rm -rf /var/lib/apt/lists/*
 ################################################################################
 
+################################################################################
+## Install required Python packages
+RUN sudo apt update && sudo apt install -y \
+  pipx \
+  && sudo rm -rf /var/lib/apt/lists/*
+RUN pipx install poetry
+################################################################################
 
 CMD ["/bin/zsh"]
 
