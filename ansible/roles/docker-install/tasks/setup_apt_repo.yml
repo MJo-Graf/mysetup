@@ -6,8 +6,6 @@
     group: root
     mode: '0775'
   become: true
-  vars:
-    ansible_become_exe: sudo.ws
 
 
 
@@ -16,8 +14,6 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     dest: /etc/apt/keyrings/docker.asc
   become: true
-  vars:
-    ansible_become_exe: sudo.ws
 
 - name: Set key permissions
   ansible.builtin.file:
@@ -26,8 +22,6 @@
     group: root
     mode: 'a+r'
   become: true
-  vars:
-    ansible_become_exe: sudo.ws
 
 
 - name: 
@@ -41,12 +35,8 @@
              Signed-By: /etc/apt/keyrings/docker.asc
     dest: /etc/apt/sources.list.d/docker.sources
   become: true
-  vars:
-    ansible_become_exe: sudo.ws
 
 - name: update apt cache
   ansible.builtin.apt:
     update_cache: yes
   become: true
-  vars:
-    ansible_become_exe: sudo.ws

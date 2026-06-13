@@ -3,5 +3,3 @@
     state: started
     name: docker
   become: true
-  vars:
-    ansible_become_exe: sudo.ws

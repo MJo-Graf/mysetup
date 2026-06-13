@@ -7,6 +7,11 @@
 
 
   pre_tasks:
+    - name: Set ansible_become_exe
+      ansible.builtin.set_fact:
+        ansible_become_exe: "{{'sudo.ws' if ( ansible_facts['lsb']['id'] == 'Ubuntu' )  and  ( ansible_facts['lsb']['major_release'] | int >= 26 ) else 'sudo'  }}"
+         
+
     - name: Get user
       ansible.builtin.shell: whoami
       register: user

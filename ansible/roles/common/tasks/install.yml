@@ -2,8 +2,6 @@
   ansible.builtin.apt:
     name: ca-certificates
   become: true
-  vars:
-    ansible_become_exe: sudo.ws
 
 
 
